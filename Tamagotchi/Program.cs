@@ -68,6 +68,7 @@ namespace Tamagotchi
 
         static void startGame()
         {
+            Console.Clear();
             tamagotchi gucci = new tamagotchi();
             gucci.name = "";
 
@@ -77,6 +78,17 @@ namespace Tamagotchi
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Din Tamagotchi heter nu: {gucci.name}");
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            gucci.printStats();
+            Console.WriteLine();
+
+            Console.WriteLine("Vad vill du göra?");
+            Console.WriteLine("1. Lära tamagotchin ett nytt ord");
+            Console.WriteLine("2. Hälsa på den");
+            Console.WriteLine("3. Mata den");
+            Console.WriteLine("4. Göra ingenting");
+
 
             Console.ReadLine();
 

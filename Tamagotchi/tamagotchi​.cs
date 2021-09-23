@@ -5,8 +5,8 @@ namespace Tamagotchi
 {
     public class tamagotchi​
     {
-        int hunger = 10;
-        int boredom = 10;
+        int hunger = 0;
+        int boredom = 0;
         List<string> words = new List<string>() { };
         bool isAlive = true;
 
@@ -54,9 +54,9 @@ namespace Tamagotchi
         // skriver ut nuvarande hunger och bredom, och meddelar också huruvida tamagotchin lever.
         public void printStats()
         {
-            Console.WriteLine($"You characters boredom:{boredom}");
-            Console.WriteLine($"You characters hunger:{hunger}");
-            Console.WriteLine(isAlive);
+            Console.WriteLine($"Din karaktärs Tristess: {boredom}");
+            Console.WriteLine($"Din karaktärs Hunger: {hunger}");
+            Console.WriteLine($"Lever din karaktär {isAlive}");
         }
 
         //returnerar värdet som isAlive har.
