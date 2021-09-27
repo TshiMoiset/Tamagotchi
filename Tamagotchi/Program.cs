@@ -9,23 +9,19 @@ namespace Tamagotchi
     {
         static void Main(string[] args)
         {
-
-            tamagotchi gucci = new tamagotchi();
-            gucci.name = "";
-
             int menuChoises = 0;
             string menuChoisesString = "";
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
 
-            Console.WriteLine("Välkomen till Tamagotchi");
+            Console.WriteLine("Välkomen till Tamagotchi!");
+            Console.WriteLine();
 
             while (menuChoises != 3) // Innehållet som finns i menyn.
             {
-                Console.WriteLine();
-                Console.WriteLine("Välj ett alternativ!");
-                Console.WriteLine("1. Starta spel");
-                Console.WriteLine("2. Hur fungerar spelet?");
                 Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Välj ett alternativ!");
+                Console.WriteLine("1. Starta spel ;)");
+                Console.WriteLine("2. Hur funkaar det?");
                 menuChoisesString = Console.ReadLine();
 
                 while (!int.TryParse(menuChoisesString, out menuChoises))       // Koden gör att den inte krashar om anvädaren inte följer instruktionerna.
@@ -38,7 +34,6 @@ namespace Tamagotchi
                     menuChoisesString = Console.ReadLine();
                 }
 
-
                 Console.WriteLine();
 
                 switch (menuChoisesString)
@@ -49,12 +44,13 @@ namespace Tamagotchi
                         break;
 
                     case "2":
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("Spelet går ut på att hålla din Tamagotchi vid liv.");
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        Console.WriteLine("Spelet går ut på att hålla din Tamagotchi vid liv och exalterad.");
                         Console.WriteLine("Du ska välja mellan att lära tamagotchin ett nytt ord, hälsa på den, mata den eller göra ingenting.");
-                        Console.WriteLine("Varje gång du gör ett val ökar hunger och boredom, och om någon av dem kommer över 10 så DÖR din tamagotchin.");
+                        Console.WriteLine("Varje gång du gör ett val ökar hunger och boredom, och om någon av de blir över 10 så DÖR din tamagotchi.");
                         Console.WriteLine("DÖD TAMAGOTCHI = GAME OVER");
-                        Console.WriteLine("Good Luck!!!");
+                        Console.WriteLine("Lycka till!!!");
+                        Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         break;
                 }
@@ -68,36 +64,28 @@ namespace Tamagotchi
 
         static void startGame()
         {
-            Console.Clear();
             tamagotchi gucci = new tamagotchi();
             gucci.name = "";
 
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Välj ett namn till din Tamagotchi: ");
             gucci.name = Console.ReadLine();
 
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"Din Tamagotchi heter nu: {gucci.name}");
 
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Green;
             gucci.printStats();
             Console.WriteLine();
 
             Console.WriteLine("Vad vill du göra?");
-            Console.WriteLine("1. Lära tamagotchin ett nytt ord");
-            Console.WriteLine("2. Hälsa på den");
-            Console.WriteLine("3. Mata den");
-            Console.WriteLine("4. Göra ingenting");
-
+            setWritelineColor("1. Lära tamagotchin ett nytt ord", ConsoleColor.Magenta);
+            setWritelineColor("2. Hälsa på den", ConsoleColor.Blue);
+            setWritelineColor("3. Mata den", ConsoleColor.Red);
+            setWritelineColor("4. Göra ingenting", ConsoleColor.Yellow);
 
             Console.ReadLine();
-
-
-
-
-
-
-
         }
 
         public static void setWritelineColor(string txt, ConsoleColor color)

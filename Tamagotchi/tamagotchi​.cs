@@ -54,9 +54,9 @@ namespace Tamagotchi
         // skriver ut nuvarande hunger och bredom, och meddelar också huruvida tamagotchin lever.
         public void printStats()
         {
-            Console.WriteLine($"Din karaktärs Tristess: {boredom}");
-            Console.WriteLine($"Din karaktärs Hunger: {hunger}");
-            Console.WriteLine($"Lever din karaktär {isAlive}");
+            Console.WriteLine($"Boredom: {boredom}");
+            Console.WriteLine($"Hunger: {hunger}");
+            Console.WriteLine($"Lever din karaktär: {isAlive}");
         }
 
         //returnerar värdet som isAlive har.
