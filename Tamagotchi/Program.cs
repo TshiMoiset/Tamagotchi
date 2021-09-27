@@ -1,4 +1,5 @@
-﻿using System.Runtime.ConstrainedExecution;
+﻿using System.Runtime.InteropServices;
+using System.Runtime.ConstrainedExecution;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Reflection.Metadata;
@@ -10,6 +11,7 @@ namespace Tamagotchi
     {
         static void Main(string[] args)
         {
+            Console.Title = "Tamagotchi";
             int menuChoises = 0;
             string menuChoisesString = "";
             Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -54,6 +56,11 @@ namespace Tamagotchi
                         Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         break;
+                    default:
+                        setWritelineColor("ERROR!!!", ConsoleColor.Red);
+                        Console.WriteLine("Du har inte valt någon av alternativen 1 - 3!");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
                 }
             }
 
@@ -66,37 +73,76 @@ namespace Tamagotchi
         static void startGame()
         {
             string answer = "";
+            string food = "";
             tamagotchi gucci = new tamagotchi();
             gucci.name = "";
-            string svar = Console.ReadLine();
-            gucci.teach(svar);
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Välj ett namn till din Tamagotchi: ");
             gucci.name = Console.ReadLine();
 
+            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"Din Tamagotchi heter nu: {gucci.name}");
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            gucci.printStats();
-            Console.WriteLine();
 
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("Vad vill du göra?");
-            setWritelineColor("1. Lära tamagotchin ett nytt ord", ConsoleColor.Magenta);
-            setWritelineColor("2. Hälsa på den", ConsoleColor.Blue);
-            setWritelineColor("3. Mata den", ConsoleColor.Red);
-            setWritelineColor("4. Göra ingenting", ConsoleColor.Yellow);
-
-            Console.ReadLine();
-
-            if (answer == "1")
+            while (true)
             {
-                gucci.teach();
+                Console.ForegroundColor = ConsoleColor.Green;
+                gucci.printStats();
+                Console.WriteLine();
 
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("Vad vill du göra?");
+                setWritelineColor($"1. Lära {gucci.name} ett nytt ord", ConsoleColor.Magenta);
+                setWritelineColor("2. Hälsa på den", ConsoleColor.Blue);
+                setWritelineColor("3. Mata den", ConsoleColor.Red);
+                setWritelineColor("4. Göra ingenting", ConsoleColor.Yellow);
+
+                answer = Console.ReadLine();
+                if (answer == "1")
+                {
+                    Console.WriteLine();
+                    string svar = Console.ReadLine();
+                    gucci.teach(svar);
+                    Console.WriteLine($"Lär {gucci.name} ett nytt ord: ");
+                    //teach(word) = Console.ReadLine();
+                    gucci.tick();
+                }
+
+                else if (answer == "2")
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"Skriv något till {gucci.name} :)");
+                    Console.ReadLine();
+                    Console.WriteLine();
+                    Console.WriteLine(":)");
+                    gucci.tick();
+                }
+
+                else if (answer == "3")
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"Vad vill du att {gucci.name} ska äta?");
+                    food = Console.ReadLine().ToLower();
+                    Console.WriteLine();
+                    Console.WriteLine("Tack för maten, den var god :)");
+                    Console.WriteLine();
+                    gucci.tick();
+                    gucci.feed();
+
+                }
+
+                if (answer == "4")
+                {
+                    Console.WriteLine("Vad tråkig du är :(");
+                    Console.WriteLine();
+                    gucci.tick();
+                }
             }
+
+
 
 
 
