@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Runtime.ConstrainedExecution;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Reflection.Metadata;
 using System;
@@ -64,8 +65,11 @@ namespace Tamagotchi
 
         static void startGame()
         {
+            string answer = "";
             tamagotchi gucci = new tamagotchi();
             gucci.name = "";
+            string svar = Console.ReadLine();
+            gucci.teach(svar);
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -79,6 +83,7 @@ namespace Tamagotchi
             gucci.printStats();
             Console.WriteLine();
 
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("Vad vill du göra?");
             setWritelineColor("1. Lära tamagotchin ett nytt ord", ConsoleColor.Magenta);
             setWritelineColor("2. Hälsa på den", ConsoleColor.Blue);
@@ -86,6 +91,18 @@ namespace Tamagotchi
             setWritelineColor("4. Göra ingenting", ConsoleColor.Yellow);
 
             Console.ReadLine();
+
+            if (answer == "1")
+            {
+                gucci.teach();
+
+            }
+
+
+
+
+
+
         }
 
         public static void setWritelineColor(string txt, ConsoleColor color)

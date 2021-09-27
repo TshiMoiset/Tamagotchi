@@ -35,7 +35,6 @@ namespace Tamagotchi
         {
             words.Add(word);
             reduceBoredom();
-
         }
 
 
@@ -47,6 +46,7 @@ namespace Tamagotchi
             if (boredom > 10 || hunger > 10)
             {
                 isAlive = false;
+                Console.WriteLine("GAME OVER");
             }
         }
 
