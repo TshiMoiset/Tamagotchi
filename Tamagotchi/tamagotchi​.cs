@@ -7,7 +7,7 @@ namespace Tamagotchi
     {
         int hunger = 0;
         int boredom = 0;
-        List<string> words = new List<string>() { };
+        List<string> words = new List<string>();
         bool isAlive = true;
 
         Random generator = new Random();
@@ -34,6 +34,12 @@ namespace Tamagotchi
         public void teach(string word)
         {
             words.Add(word);
+            Console.Write("Ordet: ");
+            for (int i = 0; i < words.Count; i++)
+            {
+                Console.WriteLine(words[i]);
+            }
+
             reduceBoredom();
         }
 
@@ -60,7 +66,10 @@ namespace Tamagotchi
         }
 
         //returnerar värdet som isAlive har.
-        bool GetAlive = true;
+        public bool GetAlive()
+        {
+            return isAlive;
+        }
 
 
         //sänker boredom.

@@ -1,9 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Runtime.ConstrainedExecution;
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
-using System.Reflection.Metadata;
-using System;
+﻿using System;
 
 namespace Tamagotchi
 {
@@ -72,10 +67,12 @@ namespace Tamagotchi
 
         static void startGame()
         {
+            int answerInt = 0;
             string answer = "";
             string food = "";
             tamagotchi gucci = new tamagotchi();
             gucci.name = "";
+
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -86,8 +83,7 @@ namespace Tamagotchi
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"Din Tamagotchi heter nu: {gucci.name}");
 
-
-            while (true)
+            while (gucci.GetAlive())
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 gucci.printStats();
@@ -101,17 +97,19 @@ namespace Tamagotchi
                 setWritelineColor("4. Göra ingenting", ConsoleColor.Yellow);
 
                 answer = Console.ReadLine();
+
                 if (answer == "1")
                 {
                     Console.WriteLine();
-                    string svar = Console.ReadLine();
-                    gucci.teach(svar);
-                    Console.WriteLine($"Lär {gucci.name} ett nytt ord: ");
-                    //teach(word) = Console.ReadLine();
+                    Console.Write($"Lär {gucci.name} ett nytt ord: ");
+                    string wordAnswer = Console.ReadLine();
+                    gucci.teach(wordAnswer);
+                    Console.WriteLine();
+                    Console.WriteLine($"{gucci.name} lärde sig ordet: {wordAnswer} ");
                     gucci.tick();
                 }
 
-                else if (answer == "2")
+                if (answer == "2")
                 {
                     Console.WriteLine();
                     Console.WriteLine($"Skriv något till {gucci.name} :)");
@@ -121,7 +119,7 @@ namespace Tamagotchi
                     gucci.tick();
                 }
 
-                else if (answer == "3")
+                if (answer == "3")
                 {
                     Console.WriteLine();
                     Console.WriteLine($"Vad vill du att {gucci.name} ska äta?");
@@ -140,14 +138,15 @@ namespace Tamagotchi
                     Console.WriteLine();
                     gucci.tick();
                 }
+
+                while (!int.TryParse(answer, out answerInt))
+                {
+                    Console.WriteLine();
+                    setWritelineColor("Det där är inte ett giltigt svar. Försök igen!", ConsoleColor.Red);
+                    setWritelineColor("Ok, Jag väljer då: ", ConsoleColor.Cyan);
+                    answer = Console.ReadLine();
+                }
             }
-
-
-
-
-
-
-
 
         }
 
