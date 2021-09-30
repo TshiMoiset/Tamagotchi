@@ -112,8 +112,8 @@ namespace Tamagotchi
 
                 if (answer == "2")
                 {
-
                     gucci.hi();
+                    Console.WriteLine();
                     gucci.tick();
                 }
 

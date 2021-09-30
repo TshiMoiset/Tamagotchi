@@ -1,3 +1,4 @@
+using System.Threading.Tasks.Dataflow;
 using System.Collections.Generic;
 using System;
 
@@ -20,12 +21,18 @@ namespace Tamagotchi
             hunger -= 1;
         }
 
-
         //skriver ut ett slumpat ord från words, och anropar ReduceBoredom.
         public void hi()
         {
             int i = generator.Next(words.Count);
-            Console.WriteLine($"{words}");
+            if (words.Count < 0)
+            {
+                Console.WriteLine("?");
+            }
+            else
+            {
+                Console.WriteLine(words[i]);
+            }
             reduceBoredom();
         }
 
