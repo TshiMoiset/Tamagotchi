@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.ComponentModel;
+using System;
 
 namespace Tamagotchi
 {
@@ -111,11 +112,8 @@ namespace Tamagotchi
 
                 if (answer == "2")
                 {
-                    Console.WriteLine();
-                    Console.WriteLine($"Skriv något till {gucci.name} :)");
-                    Console.ReadLine();
-                    Console.WriteLine();
-                    Console.WriteLine(":)");
+
+                    gucci.hi();
                     gucci.tick();
                 }
 
